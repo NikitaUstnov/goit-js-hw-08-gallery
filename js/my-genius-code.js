@@ -2,7 +2,7 @@ import imgArr from "./gallery-items.js";
 
 const imagesGridEl = imgArr.map(({ preview, original, description }) => {
   return `<li class="gallery__item">
-  <a class="gallery__link">
+  <a class="gallery__link" href="${original}">
   <img class="gallery__image"
   src="${preview}"
   alt="${description}"
@@ -11,36 +11,31 @@ const imagesGridEl = imgArr.map(({ preview, original, description }) => {
   </a>
   </li>`
 }).join('');
-// 
+
 const galleryEl = document.querySelector(".js-gallery");
 galleryEl.addEventListener('click', openModal)
 galleryEl.insertAdjacentHTML("beforeend", imagesGridEl);
-  
+
+const modalEl = document.querySelector('.js-lightbox')
+// отрытие модалки
 function openModal(evt) {
+  evt.preventDefault()
   if (evt.target.nodeName !== "IMG") {
     return
   }
-      console.log(evt.target.alt)
+  modalEl.classList.add('is-open')
+
+   if (modalEl.classList.contains('is-open')) {
+    console.log("Ничего мне это не дало")
+  }
 }
 
 
-
-
-const modalEl = document.querySelector(".js-lightbox")
+// закрытие модалки
 const closeButtonModalEl = document.querySelector('.lightbox__button')
-
 closeButtonModalEl.addEventListener('click', closeModal)
+
 function closeModal() {
- modalEl.classList.remove('.is-open')
+ modalEl.classList.remove('is-open')
 }
-
-
-
-// const listImgEl = document.querySelector('.gallery__item')
-// listImgEl.addEventListener("click", openModal)
-
-// function openModal() {
-//  modalEl.classList.add("is-open")
-  
-// }
 
