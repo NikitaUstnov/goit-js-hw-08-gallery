@@ -8,15 +8,14 @@ const imagesGridEl = imgArr.map(({ preview, original, description }) => {
   <img class="gallery__image"
   src="${preview}"
   alt="${description}"
-data-source="${original}"
+data-source="${original}"/>
   </a>
   </li>
     "`;
 }, "");
-// +380994807984;
 
 console.log(imagesGridEl);
 
 const galleryEl = document.querySelector(".js-gallery");
-galleryEl.insertAdjacentHTML("beforebegin", imagesGridEl);
-  // 
+imagesGridEl.insertAdjacentHTML("beforebegin", galleryEl);
+  
