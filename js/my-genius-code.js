@@ -15,10 +15,10 @@ const imagesGridEl = imgArr.map(({ preview, original, description }) => {
 const galleryEl = document.querySelector(".js-gallery");
 galleryEl.addEventListener('click', openModal)
 galleryEl.insertAdjacentHTML("beforeend", imagesGridEl);
-const fullSizeImgEl = document.querySelector('lightbox__image')
-const fullImg = document.querySelector('[data-source]')
-
+const fullSizeImgEl = document.querySelector('.lightbox__image')
 const modalEl = document.querySelector('.js-lightbox')
+
+
 // отрытие модалки
 function openModal(evt) {
   evt.preventDefault()
@@ -28,16 +28,21 @@ function openModal(evt) {
   modalEl.classList.add('is-open')
 
   if (modalEl.classList.contains("is-open")) {
-    fullSizeImgEl.setAttribute('src')
+      fullSizeImgEl.src = evt.target.dataset.source;
+      fullSizeImgEl.alt = evt.target.alt;
   }
+
 }
-
-
 // закрытие модалки
 const closeButtonModalEl = document.querySelector('.lightbox__button')
 closeButtonModalEl.addEventListener('click', closeModal)
 
 function closeModal() {
- modalEl.classList.remove('is-open')
+  modalEl.classList.remove('is-open')
+  
+  fullSizeImgEl.src = '';
+      fullSizeImgEl.alt = '';
 }
+
+
 
