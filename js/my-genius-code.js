@@ -44,5 +44,19 @@ function closeModal() {
       fullSizeImgEl.alt = '';
 }
 
+// закрытие модалки по клику на оверлей
+const closeModalTromOverlay = document.querySelector('.lightbox__overlay')
+closeModalTromOverlay.addEventListener('click', closeModalOverlayFn)
 
+function closeModalOverlayFn() {
+   modalEl.classList.remove('is-open')
+}
 
+//закрытие по escape
+window.addEventListener('keydown', onBtnPress)
+
+function onBtnPress(e) {
+  if (e.key ===	"Escape") {
+    modalEl.classList.remove('is-open')
+  }
+}
