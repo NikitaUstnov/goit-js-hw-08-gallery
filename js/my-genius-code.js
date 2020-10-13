@@ -60,3 +60,17 @@ function onBtnPress(e) {
     modalEl.classList.remove('is-open')
   }
 }
+
+// листалка  пока не работает
+
+window.addEventListener('keydown', imgScroll)
+function imgScroll(e) {
+    
+
+    if (e.key === "ArrowLeft") {
+       imgArr[0]
+
+       alert('листалка не работает, попробуйте позже')
+     } console.log()
+}
+
