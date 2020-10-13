@@ -65,12 +65,17 @@ function onBtnPress(e) {
 
 window.addEventListener('keydown', imgScroll)
 function imgScroll(e) {
-    
-
-    if (e.key === "ArrowLeft") {
-       imgArr[0]
-
-       alert('листалка не работает, попробуйте позже')
-     } console.log()
+    fullSizeImgEl.setAttribute('data-index', '')
+    fullSizeImgEl.data-index == '1'
+  if (e.key === "ArrowLeft") {
+    fullSizeImgEl.data-index.value + '1';
+    alert('листалка не работает, попробуйте позже')
+  }
+  if (e.key === "ArrowRight") {
+    fullSizeImgEl.data-index - '1';
+    console.log(fullSizeImgEl.hasAttribute('data-index'))
+  }
+ 
+  console.log(fullSizeImgEl.hasAttribute('data-index'))
 }
 
