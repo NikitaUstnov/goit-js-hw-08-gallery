@@ -12,6 +12,12 @@ const imagesGridEl = imgArr.map(({ preview, original, description }) => {
   </li>`
 }).join('');
 
+const phtoDescrEl = function a() {
+  return `<span class="photo-descr">${description}<span>`
+}
+const galDecscr = document.querySelector('.lightbox__content')
+galDecscr.insertAdjacentHTML('beforeend', phtoDescrEl)
+
 const galleryEl = document.querySelector(".js-gallery");
 galleryEl.addEventListener('click', openModal)
 galleryEl.insertAdjacentHTML("beforeend", imagesGridEl);
@@ -29,7 +35,8 @@ function openModal(evt) {
 
   if (modalEl.classList.contains("is-open")) {
       fullSizeImgEl.src = evt.target.dataset.source;
-      fullSizeImgEl.alt = evt.target.alt;
+    fullSizeImgEl.alt = evt.target.alt;
+    window.addEventListener('keydown', keyboardPress)
   }
 
 }
@@ -63,19 +70,57 @@ function onBtnPress(e) {
 
 // листалка  пока не работает
 
-window.addEventListener('keydown', imgScroll)
-function imgScroll(e) {
-    fullSizeImgEl.setAttribute('data-index', '')
-    fullSizeImgEl.data-index == '1'
-  if (e.key === "ArrowLeft") {
-    fullSizeImgEl.data-index.value + '1';
-    alert('листалка не работает, попробуйте позже')
+const UrlsArr = imgArr.map((el) => el.original);
+function keyboardPress(event) {
+  if (event.code === "ArrowRight") {
+    for (let i = 0; i < UrlsArr.length; i += 1) {
+      if (fullSizeImgEl.src === UrlsArr[8]) {
+        fullSizeImgEl.src = `${UrlsArr[0]}`;
+        return;
+      } else if (fullSizeImgEl.src === UrlsArr[i]) {
+        fullSizeImgEl.src = `${UrlsArr[i + 1]}`;
+        return;
+      }
+    }
+  } else if (event.code === "ArrowLeft") {
+    for (let i = 0; i < UrlsArr.length; i += 1) {
+      if (fullSizeImgEl.src === UrlsArr[0]) {
+        fullSizeImgEl.src = `${UrlsArr[8]}`;
+        return;
+      } else if (fullSizeImgEl.src === UrlsArr[i]) {
+        fullSizeImgEl.src = `${UrlsArr[i - 1]}`;
+        return;
+      }
+    }
   }
-  if (e.key === "ArrowRight") {
-    fullSizeImgEl.data-index - '1';
-    console.log(fullSizeImgEl.hasAttribute('data-index'))
-  }
- 
-  console.log(fullSizeImgEl.hasAttribute('data-index'))
 }
 
+
+
+
+
+
+// currentIndex = Array.from(
+//       document.querySelector(".gallery__image")
+//     ).indexOf(event.target);
+// moveImages()
+// {
+//     this.modalImageRef.src = this.imagesArray[this.currentIndex].original;
+//     this.modalImageRef.alt = this.imagesArray[this.currentIndex].description;
+//   }
+// moveRightLightbox()
+// {
+//     if (this.currentIndex === this.imagesArray.length - 1) {
+//       this.currentIndex = -1;
+//     }
+//     this.currentIndex += 1;
+//     this.moveImages();
+//   }
+// moveLeftLightbox()
+// {
+//     if (this.currentIndex === 0) {
+//       this.currentIndex = this.imagesArray.length;
+//     }
+//     this.currentIndex -= 1;
+//     this.moveImages();
+//   }
